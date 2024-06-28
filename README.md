@@ -75,10 +75,10 @@ __verbose__: Turn on verbose output. This is set to False by default. This will 
 ### Output
 gambitcore will then output a tab delimited output to standard out that looks like this:
 
-| Filename                            | Species                       | Completeness (%) | Assembly core/Species Core | Closest accession   | Closest distance | Assembly k-mers| Species k-mers Mean | Species k-mers Std Dev | Assembly QC |
-|-------------------------------------|-------------------------------|------------------|----------------------------|---------------------|------------------|----------------|---------------------|------------------------|-------------|
-| test/fasta/GCF_002800775.1.fna.gz   | Mycobacteroides abscessus     | 100.00%          | (5296/5296)                | GCF_000758385.1     | 0.0360           | 10847          | 10635               | 403                    | green       |
- 
+| Filename | Species Completeness (%) | Number Genomes | Assembly Core/species Core | Closest accession | Closest distance | Assembly Kmers | Species Kmers Mean | Species Kmers Std Dev | Assembly QC |
+|---|---|---|---|---|---|---|---|---|---|
+| test/fasta/GCF_002800775.1.fna.gz | Mycobacteroides abscessus | 100.00% 1955 | (4497/4497) | GCF_002800775.1 | 0.0000 | 10847 | 10579 | 352 | green |
+
 To get a concise output then use the -e flag:
 
 | Filename        | Species                   | Completeness (%) |
@@ -91,7 +91,9 @@ __Filename__: The name of the input FASTA file upon which the analysis was perfo
 
 __Species__: The predicted species from GAMBIT.
 
-__Completeness (%)__: This is the percentage of core k-mers from the species found in the input assembly. A fully complete assembly should contain 100% of all the core k-mers. It is normal that some k-mers may not be present due to assembly errors, although a good quality assembly should be very close to 100%. The absolute number of core k-mers found, and the number of core k-mers expected, are in brackets. 
+__Species Completeness (%)__: This is the percentage of core k-mers from the species found in the input assembly. A fully complete assembly should contain 100% of all the core k-mers. It is normal that some k-mers may not be present due to assembly errors, although a good quality assembly should be very close to 100%. The absolute number of core k-mers found, and the number of core k-mers expected, are in brackets. 
+
+__Number Genomes__: This is the total number of genomes used to compute the core k-mers for the species found. This number will be limited by the `max_species_genomes` input.
 
 __Closest accession__: This is the accession number of the genome from the database which is closest to the input assembly, as determined by GAMBIT. All GAMBIT k-mers are used to calcuate this.
 
@@ -108,7 +110,6 @@ __Assembly QC__: This is a colour coded output to give you an indication of the 
 > :warning: Warning
 > 
 > If GAMBIT failes to make a species- or subspecies-level assignment, GAMBITcore will be skipped with the message "Species could not be identified, skipping core genome assessment". 
-
 
 ## gambitcore-species
 This is a script which takes in a GAMBIT database and calculates the core k-mers for every species in the database. It then outputs the details for each species to a tab delimited file.
