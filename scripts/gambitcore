@@ -126,7 +126,7 @@ def calculate_core(core_proportion, max_species_genomes, num_genomes_per_species
     core_kmers_counts = kmer_counts[kmer_counts >= round(num_genomes*core_proportion)]
     core_kmers = core_kmers_counts.keys().astype(int)
 
-    logging.info("Core kmers for "+ species + " containing " + num_genomes + " genomes: " + str(len(core_kmers)))
+    logging.info("Core kmers for "+ species + " containing " + str(num_genomes) + " genomes: " + str(len(core_kmers)))
 
     num_genomes_per_species = num_genomes_per_species_threshold(num_genomes_per_species, filtered_src)
     index_of_species_to_consider = min(num_genomes_per_species, len(filtered_src))
